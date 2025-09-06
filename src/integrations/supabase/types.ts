@@ -14,7 +14,181 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          buyer_address: string
+          buyer_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          product_id: string
+          seller_id: string
+          status: string
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          buyer_address: string
+          buyer_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          product_id: string
+          seller_id: string
+          status?: string
+          total_amount: number
+          updated_at?: string
+        }
+        Update: {
+          buyer_address?: string
+          buyer_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          product_id?: string
+          seller_id?: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          brand: string | null
+          category_id: string
+          condition: string
+          created_at: string
+          description: string
+          id: string
+          images: string[] | null
+          is_available: boolean | null
+          location: string | null
+          price: number
+          seller_id: string
+          title: string
+          updated_at: string
+          views_count: number | null
+        }
+        Insert: {
+          brand?: string | null
+          category_id: string
+          condition: string
+          created_at?: string
+          description: string
+          id?: string
+          images?: string[] | null
+          is_available?: boolean | null
+          location?: string | null
+          price: number
+          seller_id: string
+          title: string
+          updated_at?: string
+          views_count?: number | null
+        }
+        Update: {
+          brand?: string | null
+          category_id?: string
+          condition?: string
+          created_at?: string
+          description?: string
+          id?: string
+          images?: string[] | null
+          is_available?: boolean | null
+          location?: string | null
+          price?: number
+          seller_id?: string
+          title?: string
+          updated_at?: string
+          views_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          avatar_url: string | null
+          city: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          postal_code: string | null
+          state: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address?: string | null
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          postal_code?: string | null
+          state?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address?: string | null
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          postal_code?: string | null
+          state?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
